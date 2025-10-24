@@ -1,0 +1,240 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+  --track-height: 48px;
+}
+
+
+html, body, #root {
+  height: 100%;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 100px repeat(13, minmax(0, 1fr));
+}
+
+/* Scaling wrapper to fit any screen */
+.scaler-outer { position: relative; overflow: hidden; }
+.scaler-inner { transform-origin: top left; }
+
+/* Sticky header */
+.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(2,6,23,0.06);
+}
+
+/* Hour rows */
+.time-row {
+  height: var(--track-height);
+  border-top: 1px solid #e2e8f0; /* slate-200 */
+}
+
+.cell {
+  background: white;
+  border-left: 1px solid #e2e8f0;
+}
+
+.cell:hover {
+  background: #eff6ff; /* sky-50 */
+}
+
+/* Selection highlight during drag */
+.cell.selected {
+  background: #dbeafe; /* blue-100 */
+}
+
+/* Blocks layer inside each resource column */
+.col-blocks {
+  position: relative;
+  height: calc(var(--track-height) * 20);
+}
+
+/* Booking block visual style (light blue + white text) */
+.booking-block {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  border-radius: 10px;
+  background: #bfdbfe;            /* light blue */
+  border: 1px solid #60a5fa;      /* blue-400 */
+  box-shadow: 0 6px 18px -8px rgba(2,6,23,.25);
+  color: #ffffff;                 /* white text */
+  font-weight: 700;
+  padding: 6px 10px;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+}
+
+.booking-block.tv {
+  cursor: default;
+}
+
+/* Now line */
+.now-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(239, 68, 68, 0.9); /* red-500/90 */
+  z-index: 5;
+}
+
+
+/* --- Polished look adjustments --- */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app-shell {
+  max-width: 1400px;
+}
+
+.topbar {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 8px 24px -16px rgba(2,6,23,.25);
+}
+
+.grid-container {
+  gap: 0px;
+}
+
+.header-cell {
+  background: #ffffff;
+}
+
+.time-col .time-row {
+  background: #ffffff;
+}
+
+.cell {
+  background: #ffffff;
+  border-left: 1px solid #e2e8f0;
+}
+
+.cell:hover {
+  background: #f0f7ff;
+}
+
+/* Subtle row separators */
+.time-row {
+  border-top: 1px solid #eef2f7;
+}
+
+/* Booking block — professional style */
+.booking-block {
+  left: 6px;
+  right: 6px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #cfe4ff 0%, #bed8ff 100%);
+  border: 1px solid #9ec0ff;
+  box-shadow: 0 12px 28px -16px rgba(30,64,175,.35), 0 2px 8px rgba(2,6,23,.08);
+  color: #ffffff;
+  padding: 8px 10px;
+}
+
+.booking-title { font-weight: 800; letter-spacing: 0.2px; }
+.booking-time { opacity: .95; }
+
+/* Sticky header shadow enhancement */
+.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background-color: white;
+  box-shadow: 0 6px 16px -8px rgba(2,6,23,0.15);
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* Now line */
+.now-line {
+  height: 2px;
+  background: rgba(239, 68, 68, 0.95);
+}
+
+/* Modal base */
+.modal-overlay { background: rgba(15,23,42,.45); }
+.modal-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 24px 60px -20px rgba(2,6,23,.45);
+}
+
+/* Buttons */
+.btn {
+  border-radius: 12px;
+  padding: 10px 14px;
+  border: 1px solid #e2e8f0;
+}
+.btn-primary { background: #1e40af; color: #fff; border-color: #1e40af; }
+.btn-ghost { background: #fff; color: #0f172a; }
+.btn-danger { color: #991b1b; border-color: #fecaca; }
+.btn:hover { filter: brightness(0.98); }
+
+
+/* ===== TV Dark Mode (class-based) ===== */
+.dark body, .dark .app-shell {
+  background: #0b1220;
+}
+.dark .topbar {
+  background: #0f172a;
+  border-color: #1e293b;
+  box-shadow: 0 10px 30px -18px rgba(0,0,0,.6);
+}
+.dark .sticky-header {
+  background: #0f172a;
+  border-bottom-color: #1e293b;
+  box-shadow: 0 8px 22px -14px rgba(0,0,0,.7);
+}
+.dark .header-cell,
+.dark .time-col .time-row,
+.dark .cell {
+  background: #0b1220;
+  border-left-color: #1e293b;
+}
+.dark .time-row {
+  border-top-color: #132034;
+}
+.dark .cell:hover {
+  background: #0e1a2d;
+}
+.dark .now-line {
+  background: rgba(252, 165, 165, 0.95);
+}
+.dark .booking-block {
+  background: linear-gradient(180deg, #1b3a6e 0%, #17335f 100%);
+  border-color: #315a9b;
+  box-shadow: 0 16px 34px -18px rgba(2,6,23,.6), 0 4px 12px rgba(0,0,0,.35);
+  color: #e8f0ff;
+}
+
+/* General text colors in dark */
+.dark .text-slate-700, .dark .text-slate-600, .dark .text-slate-500, .dark .text-slate-800 {
+  color: #e2e8f0 !important;
+}
+.dark .border-slate-300 { border-color: #253245 !important; }
+.dark select, .dark input[type="date"] {
+  background: #0f172a; color: #e2e8f0; border-color: #253245;
+}
+.dark .btn { border-color: #253245; }
+.dark .btn-ghost { background: #0f172a; color: #e2e8f0; }
+.dark .btn-primary { background: #1e40af; color: #fff; border-color: #1e40af; }
+.dark .modal-card { background: #0f172a; border-color: #1e293b; }
+.dark .modal-card h2, .dark .modal-card label, .dark .modal-card .text-slate-800 { color: #e2e8f0; }
+.dark .modal-overlay { background: rgba(2,6,23,.55); }
+
+/* Slightly larger text for TV readability */
+.tv-mode .booking-title { font-size: 13px; }
+.tv-mode .booking-time { font-size: 12px; }
+.tv-mode .grid-container .text-xs { font-size: 12px; }
