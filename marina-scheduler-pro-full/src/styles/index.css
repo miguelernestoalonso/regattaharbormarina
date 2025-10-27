@@ -1,0 +1,84 @@
+/* ---- Light Modern Theme + Alignment Fix ---- */
+:root{
+  --bg: #f7faff;
+  --panel: #ffffff;
+  --line: #e5eaf3;
+  --text: #0f172a;
+  --muted: #475569;
+  --primary: #1e40af;
+  --accent: #3b82f6;
+
+  --track-height: 48px;   /* 30 min per row */
+  --slots: 18;            /* 08:00–17:00 => 18 rows */
+}
+
+html, body { background: var(--bg); color: var(--text); }
+
+.scheduler-root{
+  background: var(--panel);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px -20px rgba(2,6,23,.2);
+  border: 1px solid var(--line);
+}
+
+/* Top bar */
+.topbar{
+  display:flex; gap:12px; align-items:center; justify-content:space-between;
+  padding:16px; position:sticky; top:0; background:var(--panel);
+  border-bottom:1px solid var(--line); z-index:5;
+}
+.topbar-left, .topbar-right{ display:flex; gap:8px; align-items:center; }
+.role-badge{ padding:4px 8px; border:1px solid var(--line); border-radius:8px; font-size:12px; }
+.select, .button, input[type="date"]{
+  border:1px solid var(--line); border-radius:8px; padding:6px 10px;
+}
+.button{ background: #fff; color: var(--text); cursor:pointer; }
+.button.primary{ background: #1e40af; color: white; border-color:#1e40af; }
+
+/* Header row */
+.header{
+  display:grid; grid-template-columns: 120px repeat(13, 1fr);
+  position:sticky; top:64px; background:var(--panel); z-index:4;
+  border-bottom:1px solid var(--line);
+}
+.header-cell{ padding:10px 8px; font-weight:600; font-size:12px; color:var(--text); }
+.header-cell.muted{ color:var(--muted); }
+
+/* Body grid */
+.grid{
+  display:grid;
+  grid-template-columns: 120px repeat(13, 1fr);
+}
+.grid-body{ position: relative; height: calc(var(--track-height) * var(--slots)); min-height: 0; }
+.time-col, .col{ height: inherit; }
+
+.time-col{ border-right:1px solid var(--line); }
+.time-label{
+  height: var(--track-height);
+  font-size:12px; color:var(--muted);
+  display:flex; align-items:center; justify-content:center;
+  border-top:1px solid var(--line);
+}
+.cell{ height: var(--track-height); border-top:1px solid var(--line); }
+.cell:hover{ background: rgba(59,130,246,.06); }
+
+.col{ position: relative; }
+.col-blocks{
+  position: absolute; inset: 0; pointer-events: none;
+  height: calc(var(--track-height) * var(--slots)); overflow: visible;
+}
+
+.booking-block{
+  position:absolute; left:10px; right:10px;
+  border-radius:16px;
+  background: linear-gradient(135deg, rgba(59,130,246,.18), rgba(30,64,175,.18));
+  border:1px solid rgba(30,64,175,.35);
+  box-shadow: 0 16px 28px -18px rgba(2,6,23,.25), 0 6px 12px rgba(2,6,23,.12);
+  color: var(--text);
+  font-weight:600;
+  padding:6px 8px;
+}
+.booking-title{ font-weight:800; font-size:13px; letter-spacing:.2px; }
+.booking-time{ font-size:12px; color:var(--muted); }
+
+.now-line{ position:absolute; left:0; right:0; height:2px; background:#ef4444; opacity:.9; }
